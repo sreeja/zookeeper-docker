@@ -70,6 +70,8 @@ RUN set -eux; \
     mv "$DISTRO_NAME/conf/"* "$ZOO_CONF_DIR"; \
     rm -rf "$GNUPGHOME" "$DISTRO_NAME.tar.gz" "$DISTRO_NAME.tar.gz.asc"; \
     chown -R zookeeper:zookeeper "/$DISTRO_NAME"
+    
+RUN apt-get update && apt-get install -y iproute2 iputils-ping
 
 WORKDIR $DISTRO_NAME
 VOLUME ["$ZOO_DATA_DIR", "$ZOO_DATA_LOG_DIR", "$ZOO_LOG_DIR"]
